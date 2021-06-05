@@ -41,7 +41,7 @@ function getValuesInput(){
             );
     isValid &= validation.checkValidation(
         _email, "tbEmail",
-        "* Nhập vào tài khoản để hiển thị email. \<br\>(Email sẽ có định dạng: tàikhoản@cybersoft.vn)."
+        "* Email sẽ tự động khởi tạo theo tài khoản của bạn.\<br\>(Email sẽ có định dạng: tàikhoản@cybersoft.vn)."
         );
     isValid &= validation.checkValidation(
         _password,"tbMatKhau",
