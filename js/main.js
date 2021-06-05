@@ -6,7 +6,7 @@ function getEle(id){
 }
 getLocalStorage();
 
-function getValuesInput(isAdd){
+function getValuesInput(){
     var _account = getEle("tknv").value;
     var _fullName = getEle("name").value;
     var _email = getEle("email").value;
@@ -18,16 +18,21 @@ function getValuesInput(isAdd){
 
     var isValid = true;
 
-    if (isAdd){
         isValid &= validation.checkValidation(
             _account,"tbTKNV",
-            "* Tài khoản hợp lệ từ 6-20 ký tự.") 
+            "* Tài khoản hợp lệ từ 6-20 ký tự (bao gồm số 0-9, chữ IN HOA và chữ thường).\<br\>Không được có khoảng trắng và ký tự đặc biệt.") 
             && validation.checkLength(
-                _account, "tbTKNV", "* Tài khoản hợp lệ từ 6-20 ký tự.", 6,20)
+                _account, "tbTKNV", "* Tài khoản hợp lệ từ 6-20 ký tự (bao gồm số 0-9, chữ IN HOA và chữ thường).\<br\>Không được có khoảng trắng và ký tự đặc biệt.", 6,20)
                 && validation.checkAccount(
-                    _account, "tbTKNV", "* Tài khoản đã có người sử dụng, vui lòng nhập tài khoản khác.\<br\>(tài khoản hợp lệ từ 6-20 ký tự).", listEmployees.list
-                );
-    }
+                    _account, "tbTKNV", "* Tài khoản đã có người sử dụng, vui lòng nhập tài khoản khác.\<br\>Tài khoản hợp lệ từ 6-20 ký tự (bao gồm số 0-9, chữ IN HOA và chữ thường) \<br\>Không được có khoảng trắng và ký tự đặc biệt.", listEmployees.list)
+                    && validation.checkWhiteSpace(
+                        _account,"tbTKNV",
+                        "* Tài khoản không được có khoảng trắng.")
+                        && validation.checkSpecialSymbol(
+                            _account,"tbTKNV",
+                        "* Tài khoản không được có ký tự đặc biệt."
+                        );
+
     isValid &= validation.checkValidation(
         _fullName,"tbTen",
         "* Vui lòng nhập đầy đủ họ và tên.\<br\>(chỉ nhập chữ IN HOA và chữ thường, không nhập số và ký tự đặc biệt).") 

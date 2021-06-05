@@ -23,6 +23,23 @@ function Validation(){
             return true;
     };
 
+    this.checkWhiteSpace  = function(input, spanID, mess){
+        if(/\s/g.test(input)){
+            getFalse(spanID, mess);
+            return false;
+        }
+            getTrue(spanID);
+            return true;
+    };
+    this.checkSpecialSymbol  = function(input, spanID, mess){
+        if(/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(input)){
+            getFalse(spanID, mess);
+            return false;
+        }
+            getTrue(spanID);
+            return true;
+    };
+
     this.checkLength = function (input, spanID, mess, min, max){
         if (input.length >= min && input.length <= max){
             getTrue(spanID);
